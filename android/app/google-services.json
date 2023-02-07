@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "769751676926",
+    "project_id": "psychiatric-asylums",
+    "storage_bucket": "psychiatric-asylums.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:769751676926:android:a6da503370f0e9a5a0b2af",
+        "android_client_info": {
+          "package_name": "com.example.psychiatric_asylums"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "769751676926-93qm22f5gm52oriku8nrcmkcjtvem1hq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB7WoYK1NG4XN-0ucuxy7Ahkp7-hwO9KOc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "769751676926-93qm22f5gm52oriku8nrcmkcjtvem1hq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
