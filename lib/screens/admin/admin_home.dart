@@ -144,9 +144,8 @@ class _AdminHomeState extends State<AdminHome> {
                                 padding: EdgeInsets.only(right: 10.w, left: 10.w),
                                 child: Center(
                                   child: Column(children: [
-                                    SizedBox(
-                                      height: 100.h,
-                                    ),
+                                    Image.asset('assets/images/essay.png', width: 100.w,height: 100.h),
+                                    SizedBox(height: 20.h,),
                                     Text(
                                       '${keyslist[index]}',
                                       style: TextStyle(
@@ -154,6 +153,7 @@ class _AdminHomeState extends State<AdminHome> {
                                           fontWeight: FontWeight.w600,
                                           color: HexColor('#b4a7d6')),
                                     ),
+                                    SizedBox(height: 20.h,),
                                     InkWell(
                                       onTap: () async {
                                         Navigator.pushReplacement(
@@ -175,7 +175,7 @@ class _AdminHomeState extends State<AdminHome> {
                       },
                       staggeredTileBuilder: (int index) =>
                           new StaggeredTile.count(3, index.isEven ? 3 : 3),
-                      mainAxisSpacing: 35.0,
+                      mainAxisSpacing: 25.0,
                       crossAxisSpacing: 5.0,
                     ),
                   ),

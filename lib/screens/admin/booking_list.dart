@@ -67,82 +67,80 @@ class _BookingListState extends State<BookingList> {
                 right: 10,
                 left: 10,
               ),
-              child: Expanded(
-                child: ListView.builder(
-                  itemCount: bookingList.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    var date = bookingList[index].date;
-                    return Card(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15.0),
+              child: ListView.builder(
+                itemCount: bookingList.length,
+                itemBuilder: (BuildContext context, int index) {
+                  var date = bookingList[index].date;
+                  return Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15.0),
+                    ),
+                    child: SizedBox(
+                      width: double.infinity,
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                            top: 10, right: 15, left: 15, bottom: 10),
+                        child: Column(children: [
+                          Align(
+                              alignment: Alignment.topRight,
+                              child: Text(
+                                'كود المريض : ${bookingList[index].userCode.toString()}',
+                                style: TextStyle(fontSize: 17),
+                              )),
+                          Align(
+                              alignment: Alignment.topRight,
+                              child: Text(
+                                'اسم المريض : ${bookingList[index].userName.toString()}',
+                                style: TextStyle(fontSize: 17),
+                              )),
+                          Align(
+                              alignment: Alignment.topRight,
+                              child: Text(
+                                'كود المصحة : ${bookingList[index].asylumCode.toString()}',
+                                style: TextStyle(fontSize: 17),
+                              )),
+                              Align(
+                              alignment: Alignment.topRight,
+                              child: Text(
+                                'اسم المصحة : ${bookingList[index].asylumName.toString()}',
+                                style: TextStyle(fontSize: 17),
+                              )),
+                          Align(
+                              alignment: Alignment.topRight,
+                              child: Text(
+                                'تاريخ التقديم : ${getDate(date!)}',
+                                style: TextStyle(fontSize: 17),
+                              )),
+                          Align(
+                              alignment: Alignment.topRight,
+                              child: Text(
+                                'وصف الحالة : ${bookingList[index].status.toString()}',
+                                style: TextStyle(fontSize: 17),
+                              )),
+                              InkWell(
+                                          onTap: () {
+                                            Navigator.pushReplacement(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder:
+                                                        (BuildContext context) =>
+                                                            super.widget));
+                                            base
+                                                .child(bookingList[index]
+                                                    .id
+                                                    .toString())
+                                                .remove();
+                                          },
+                                          child: Icon(Icons.delete,
+                                              color: Color.fromARGB(
+                                                  255, 122, 122, 122)),
+                                        ),
+                                        SizedBox(height: 10.h,)
+                        ]),
                       ),
-                      child: SizedBox(
-                        width: double.infinity,
-                        child: Padding(
-                          padding: const EdgeInsets.only(
-                              top: 10, right: 15, left: 15, bottom: 10),
-                          child: Column(children: [
-                            Align(
-                                alignment: Alignment.topRight,
-                                child: Text(
-                                  'كود المريض : ${bookingList[index].userCode.toString()}',
-                                  style: TextStyle(fontSize: 17),
-                                )),
-                            Align(
-                                alignment: Alignment.topRight,
-                                child: Text(
-                                  'اسم المريض : ${bookingList[index].userName.toString()}',
-                                  style: TextStyle(fontSize: 17),
-                                )),
-                            Align(
-                                alignment: Alignment.topRight,
-                                child: Text(
-                                  'كود المصحة : ${bookingList[index].asylumCode.toString()}',
-                                  style: TextStyle(fontSize: 17),
-                                )),
-                                Align(
-                                alignment: Alignment.topRight,
-                                child: Text(
-                                  'اسم المصحة : ${bookingList[index].asylumName.toString()}',
-                                  style: TextStyle(fontSize: 17),
-                                )),
-                            Align(
-                                alignment: Alignment.topRight,
-                                child: Text(
-                                  'تاريخ التقديم : ${getDate(date!)}',
-                                  style: TextStyle(fontSize: 17),
-                                )),
-                            Align(
-                                alignment: Alignment.topRight,
-                                child: Text(
-                                  'وصف الحالة : ${bookingList[index].status.toString()}',
-                                  style: TextStyle(fontSize: 17),
-                                )),
-                                InkWell(
-                                            onTap: () {
-                                              Navigator.pushReplacement(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                      builder:
-                                                          (BuildContext context) =>
-                                                              super.widget));
-                                              base
-                                                  .child(bookingList[index]
-                                                      .id
-                                                      .toString())
-                                                  .remove();
-                                            },
-                                            child: Icon(Icons.delete,
-                                                color: Color.fromARGB(
-                                                    255, 122, 122, 122)),
-                                          ),
-                                          SizedBox(height: 10.h,)
-                          ]),
-                        ),
-                      ),
-                    );
-                  },
-                ),
+                    ),
+                  );
+                },
               ),
             )
             ),
