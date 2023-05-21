@@ -358,9 +358,6 @@ class _AddAsylumState extends State<AddAsylum> {
                           User? user = FirebaseAuth.instance.currentUser;
 
                           if (user != null) {
-                            String uid = user.uid;
-                            int date = DateTime.now().millisecondsSinceEpoch;
-
                             DatabaseReference companyRef = FirebaseDatabase
                                 .instance
                                 .reference()

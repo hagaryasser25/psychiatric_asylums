@@ -96,7 +96,6 @@ class _BookAsylumState extends State<BookAsylum> {
                         User? user = FirebaseAuth.instance.currentUser;
 
                         if (user != null) {
-                          String uid = user.uid;
                           int date = DateTime.now().millisecondsSinceEpoch;
 
                           DatabaseReference companyRef = FirebaseDatabase

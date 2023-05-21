@@ -47,10 +47,11 @@ class _AddEssayState extends State<AddEssay> {
                       alignment: Alignment.center,
                       child: CircleAvatar(
                         radius: 65,
-                        backgroundColor: Colors.white,
+                         backgroundColor: Colors.white,
                         backgroundImage: AssetImage('assets/images/logo.png'),
                       ),
-                    ),
+                    ), 
+                      
                   ),
                   SizedBox(
                     height: 30.h,

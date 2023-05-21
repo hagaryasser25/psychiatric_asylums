@@ -24,13 +24,20 @@ class _BookingListState extends State<BookingList> {
   late FirebaseApp app;
   List<BookingListV> bookingList = [];
   List<String> keyslist = [];
+  String request = 'false';
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     fetchList();
+    
   }
-
+@override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    print(request);
+  }
   @override
   void fetchList() async {
     app = await Firebase.initializeApp();
@@ -99,7 +106,7 @@ class _BookingListState extends State<BookingList> {
                                 'كود المصحة : ${bookingList[index].asylumCode.toString()}',
                                 style: TextStyle(fontSize: 17),
                               )),
-                              Align(
+                          Align(
                               alignment: Alignment.topRight,
                               child: Text(
                                 'اسم المصحة : ${bookingList[index].asylumName.toString()}',
@@ -117,33 +124,113 @@ class _BookingListState extends State<BookingList> {
                                 'وصف الحالة : ${bookingList[index].status.toString()}',
                                 style: TextStyle(fontSize: 17),
                               )),
-                              InkWell(
-                                          onTap: () {
-                                            Navigator.pushReplacement(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder:
-                                                        (BuildContext context) =>
-                                                            super.widget));
-                                            base
-                                                .child(bookingList[index]
-                                                    .id
-                                                    .toString())
-                                                .remove();
-                                          },
-                                          child: Icon(Icons.delete,
-                                              color: Color.fromARGB(
-                                                  255, 122, 122, 122)),
+                          SizedBox(
+                            height: 15.h,
+                          ),
+                          request == 'false'
+                              ? Row(
+                                  children: [
+                                    ConstrainedBox(
+                                      constraints: BoxConstraints.tightFor(
+                                          width: 120.w, height: 35.h),
+                                      child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                          primary: HexColor('#b4a7d6'),
                                         ),
-                                        SizedBox(height: 10.h,)
+                                        child: Text('قبول الحجز'),
+                                        onPressed: () {
+                                          setState(() {
+                                            request = 'true';
+                                            print(request);
+                                          });
+                                          showDialog(
+                                              context: context,
+                                              builder: (context) {
+                                                return AlertDialog(
+                                                  content:
+                                                      Text('تم قبول الطلب'),
+                                                  actions: [
+                                                    TextButton(
+                                                      onPressed: () {
+                                                        Navigator.pop(context);
+                                                        Navigator.pushReplacement(
+                                                            context,
+                                                            MaterialPageRoute(
+                                                                builder: (BuildContext
+                                                                        context) =>
+                                                                    super
+                                                                        .widget));
+                                                      },
+                                                      child: Text("حسنا"),
+                                                    ),
+                                                  ],
+                                                );
+                                              });
+                                        },
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 70.w,
+                                    ),
+                                    ConstrainedBox(
+                                      constraints: BoxConstraints.tightFor(
+                                          width: 120.w, height: 35.h),
+                                      child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                          primary: HexColor('#b4a7d6'),
+                                        ),
+                                        child: Text('حذف الحجز'),
+                                        onPressed: () async {
+                                          Navigator.pushReplacement(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder:
+                                                      (BuildContext context) =>
+                                                          super.widget));
+                                          FirebaseDatabase.instance
+                                              .reference()
+                                              .child('asylumsBookings')
+                                              .child(
+                                                  '${bookingList[index].id.toString()}')
+                                              .remove();
+                                        },
+                                      ),
+                                    ),
+                                  ],
+                                )
+                              : ConstrainedBox(
+                                  constraints: BoxConstraints.tightFor(
+                                      width: 120.w, height: 35.h),
+                                  child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      primary: HexColor('#b4a7d6'),
+                                    ),
+                                    child: Text('حذف الحجز'),
+                                    onPressed: () async {
+                                      Navigator.pushReplacement(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (BuildContext context) =>
+                                                  super.widget));
+                                      FirebaseDatabase.instance
+                                          .reference()
+                                          .child('asylumsBookings')
+                                          .child(
+                                              '${bookingList[index].id.toString()}')
+                                          .remove();
+                                    },
+                                  ),
+                                ),
+                          SizedBox(
+                            height: 30.h,
+                          )
                         ]),
                       ),
                     ),
                   );
                 },
               ),
-            )
-            ),
+            )),
       ),
     );
   }

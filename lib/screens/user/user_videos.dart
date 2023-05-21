@@ -33,7 +33,6 @@ class _UserVideosState extends State<UserVideos> {
     fetchVideos();
   }
 
-  @override
   void fetchVideos() async {
     app = await Firebase.initializeApp();
     database = FirebaseDatabase(app: app);

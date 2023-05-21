@@ -67,6 +67,7 @@ class _PersonExperienceState extends State<PersonExperience> {
 
   @override
   Widget build(BuildContext context) {
+    
     return Directionality(
       textDirection: TextDirection.rtl,
       child: ScreenUtilInit(

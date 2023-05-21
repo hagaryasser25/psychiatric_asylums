@@ -38,7 +38,6 @@ class _UserHomeState extends State<UserHome> {
     getUserData();
   }
 
-  @override
   void fetchEssay() async {
     app = await Firebase.initializeApp();
     database = FirebaseDatabase(app: app);
@@ -189,64 +188,66 @@ class _UserHomeState extends State<UserHome> {
             ),
           ),
           body: Material(
-            child: Column(
-              children: [
-                Container(
-                  child: StaggeredGridView.countBuilder(
-                    shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
-                    padding: EdgeInsets.only(
-                      top: 20.h,
-                      left: 15.w,
-                      right: 15.w,
-                      bottom: 15.h,
-                    ),
-                    crossAxisCount: 6,
-                    itemCount: keyslist.length,
-                    itemBuilder: (context, index) {
-                      return Container(
-                        child: InkWell(
-                          onTap: () {
-                            Navigator.push(context,
-                                MaterialPageRoute(builder: (context) {
-                              return AdminEssay(
-                                title: keyslist[index],
-                              );
-                            }));
-                          },
-                          child: Card(
-                            color: Colors.white,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15.0),
-                            ),
-                            child: Padding(
-                              padding: EdgeInsets.only(right: 10.w, left: 10.w),
-                              child: Center(
-                                child: Column(children: [
-                                  SizedBox(
-                                    height: 100.h,
-                                  ),
-                                  Text(
-                                    '${keyslist[index]}',
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w600,
-                                        color: HexColor('#b4a7d6')),
-                                  ),
-                                ]),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Container(
+                    child: StaggeredGridView.countBuilder(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      padding: EdgeInsets.only(
+                        top: 20.h,
+                        left: 15.w,
+                        right: 15.w,
+                        bottom: 15.h,
+                      ),
+                      crossAxisCount: 6,
+                      itemCount: keyslist.length,
+                      itemBuilder: (context, index) {
+                        return Container(
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) {
+                                return AdminEssay(
+                                  title: keyslist[index],
+                                );
+                              }));
+                            },
+                            child: Card(
+                              color: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(15.0),
+                              ),
+                              child: Padding(
+                                padding: EdgeInsets.only(right: 10.w, left: 10.w),
+                                child: Center(
+                                  child: Column(children: [
+                                    SizedBox(
+                                      height: 100.h,
+                                    ),
+                                    Text(
+                                      '${keyslist[index]}',
+                                      style: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w600,
+                                          color: HexColor('#b4a7d6')),
+                                    ),
+                                  ]),
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                      );
-                    },
-                    staggeredTileBuilder: (int index) =>
-                        new StaggeredTile.count(3, index.isEven ? 3 : 3),
-                    mainAxisSpacing: 35.0,
-                    crossAxisSpacing: 5.0,
+                        );
+                      },
+                      staggeredTileBuilder: (int index) =>
+                          new StaggeredTile.count(3, index.isEven ? 3 : 3),
+                      mainAxisSpacing: 35.0,
+                      crossAxisSpacing: 5.0,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
